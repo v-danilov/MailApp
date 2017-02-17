@@ -1,0 +1,78 @@
+﻿<Window x:Class="MailApp.MailWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MailApp"
+        mc:Ignorable="d"
+        Title="MailApp" Height="530.5" Width="731" ResizeMode="NoResize" FontWeight="Bold" FontSize="16" Closing="Form_FormClosin">
+
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.671,0.98" MappingMode="RelativeToBoundingBox" StartPoint="0.499,0.08">
+            <GradientStop Color="#FF5BD3E6" Offset="1"/>
+            <GradientStop Color="#FF3C9EF0" Offset="0.151"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <Grid x:Name="Incoming" Height="422" VerticalAlignment="Top" Margin="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="422"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid Margin="0,0,551,0">
+            <ListBox x:Name="listBox" FontWeight="Normal" BorderBrush="White" SelectionChanged="listBox_SelectionChanged" Foreground="#FFFDFDFD" Margin="0,0,-17,0">
+                <ListBox.Background>
+                    <LinearGradientBrush EndPoint="0.671,0.98" StartPoint="0.499,0.08">
+                        <GradientStop Color="#FF4FBFEA" Offset="1"/>
+                        <GradientStop Color="#FF3C9EF0" Offset="0.159"/>
+                    </LinearGradientBrush>
+                </ListBox.Background>
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListBoxItem}">
+                        <Setter Property="Margin" Value="2"/>
+                        <Setter Property="Padding" Value="2"/>
+                        <Setter Property="Background" Value="#FF3C9EF0"/>
+                        <Setter Property="BorderThickness" Value="1"/>
+                        <Setter Property="BorderBrush" Value="White"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
+            <ProgressBar x:Name="progressBar" Margin="10,404,10.333,10" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" IsIndeterminate="True" Visibility="Hidden"/>
+        </Grid>
+        <Grid x:Name="messageContent" HorizontalAlignment="Left" Height="422" Margin="191,0,0,0" VerticalAlignment="Top" Width="534">
+            <Label x:Name="from" Content="From:" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Foreground="#FFFFFBFB"/>
+            <Label x:Name="subject" Content="Subject:" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top" Foreground="White"/>
+            <TextBlock x:Name="subjectBlock" HorizontalAlignment="Left" Margin="85,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontWeight="Normal" Foreground="White"/>
+            <TextBlock x:Name="fromBlock" HorizontalAlignment="Left" Margin="85,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontWeight="Normal" Foreground="White"/>
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,94,10,0">
+                <TextBlock x:Name="bodyBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Width="531" FontWeight="Normal" Foreground="White" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" ScrollViewer.HorizontalScrollBarVisibility="Auto"/>
+            </ScrollViewer>
+            <Button x:Name="logOutBtn" Content="" HorizontalAlignment="Left" Margin="494,5,0,0" VerticalAlignment="Top" Width="30" Height="26" BorderBrush="{x:Null}" Click="logOutBtn_Click">
+                <Button.Background>
+                    <ImageBrush ImageSource="Resources/logout.png"/>
+                </Button.Background>
+                <Button.Foreground>
+                    <ImageBrush ImageSource="Resources/logout.png"/>
+                </Button.Foreground>
+            </Button>
+            <Button x:Name="downloadAttach" Margin="447,371,29,26" BorderBrush="White" FontWeight="Normal" Foreground="White" Content="Files" IsEnabled="False" Click="downloadAttach_Click" Visibility="Hidden">
+                <Button.Background>
+                    <ImageBrush/>
+                </Button.Background>
+            </Button>
+        </Grid>
+        <Grid x:Name="bottomBar" HorizontalAlignment="Left" Width="725" Margin="0,422,0,-75">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Border BorderBrush="White" BorderThickness="1" HorizontalAlignment="Left" Height="75" VerticalAlignment="Top" Width="725" Margin="0,-1,0,0"/>
+            <Button x:Name="writeBtn" Content="Write" HorizontalAlignment="Left" Margin="573,9,0,0" Width="74" FontWeight="Normal" Height="25" VerticalAlignment="Top" Click="writeBtn_Click" BorderBrush="White" Foreground="White" Background="{x:Null}"/>
+            <Button x:Name="deleteBtn" Content="Delete" HorizontalAlignment="Left" Margin="232,9,0,0" Width="76" FontWeight="Normal" Height="25" VerticalAlignment="Top" RenderTransformOrigin="-0.073,0.44" Background="{x:Null}" BorderBrush="#FFFFFCFC" Foreground="White" Click="deleteBtn_Click" IsEnabled="False"/>
+            <Button x:Name="replyBtn" Content="Reply" HorizontalAlignment="Left" Margin="402,9,0,0" Width="74" FontWeight="Normal" Height="25" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="White" Foreground="White" Click="replyBtn_Click" IsEnabled="False"/>
+            <Button x:Name="updateBtn" Content="Update" Margin="40,9,605,0" VerticalAlignment="Top" FontWeight="Normal" Height="25" Click="updateBtn_Click" Background="{x:Null}" BorderBrush="White" Foreground="White"/>
+            <Button x:Name="nextBtn" Content="&gt;" Margin="125,9,574,41" Background="{x:Null}" BorderBrush="White" Foreground="White" FontSize="18" FontWeight="Normal" Click="nextBtn_Click"/>
+            <Button x:Name="prevBtn" Content="&lt;" Margin="9,9,690,41" Background="{x:Null}" BorderBrush="White" Foreground="White" FontSize="18" FontWeight="Normal" Click="prevBtn_Click"/>
+        </Grid>
+    </Grid>
+</Window>
